@@ -64,6 +64,11 @@ repos:
     hooks:
     -   id: black
 ```
+- After updating the `pre-commit-config` file with `conventional-pre-commit`, run the below command:
+```
+$ pre-commit install --hook-type commit-msg
+pre-commit installed at .git\hooks\commit-msg
+```
 
 ## Conventional Commit <a name="ConventionalCommits"></a>
 Conventional Commits provide a standardized way of writing commit messages to improve readability and automate release management.
