@@ -15,3 +15,41 @@ repos:
       rev: 22.10.0
       hooks:
       -   id: black
+  - repo: local
+    hooks:
+      - id: black
+        name: black
+        entry: black
+        language: system
+        types: [ python ]
+      - id: isort
+        name: isort
+        entry: isort
+        language: system
+        types: [ python ]
+        args: [
+            '--line-length=88',
+            '--multi-line=3',
+            '--force-grid-wrap=0',
+            '--trailing-comma',
+            '--use-parentheses',
+            '--ensure-newline-before-comments',
+        ]
+      - id: pylint
+        name: pylint
+        entry: pylint
+        language: system
+        types: [python]
+        args:
+          [
+            "-rn", # Only display messages
+            "-sn", # Don't display the score
+            "--rcfile=pylintrc", # Link to your config file
+            "--load-plugins=pylint.extensions.docparams", # Load an extension
+            "--fail-under=9"
+          ]
+      - id: sql_formatter
+        name: SQL formatter
+        language: system
+        entry: sql-formatter --max-line-length=50
+        files: \.sql$
